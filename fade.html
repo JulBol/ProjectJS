@@ -1,0 +1,70 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- own Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <title>Faded</title>
+</head>
+
+<body style="width: 100vw; height: 100vh;">
+
+  <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
+    <div class=" col-md-12 row">
+      <div class="col-md-4 offset-md-4 text-center">
+        <a class="navbar-brand" href="fade.html" style="font-family: 'Lobster', cursive;" id="demo">Faded</a>
+      </div>
+      <div class="ml-auto">
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid row" style="width: 100vw; height: 100vh; overflow:hidden;">
+    <div id="startPic" style="width: 20vw;">
+      <img src="img/picToFade.jpg" alt="Picture to fade away" style="width: 20vw; padding: 10px; cursor: pointer;" class="fade" />
+    </div>
+    <div id="waves" style="width: 78vw;">
+      <img id="wave1" src="img/blackWavyStroke.png" style="width: 20vw;" height="100;"/>
+    </div>
+    <p id="loader" style="position: absolute; z-index: 1; color: green; cursor: wait; top: 45%; left: 50%">Loading</p>
+  </div>
+
+  <footer id="myFooter" class="col-md-12 row noMLR">
+    <div class="col-md-2">
+      <a href="googleThings.html" style="color: black;">Google-Things</a>
+    </div>
+    <div class="col-md-2 offset-md-8 text-right">
+      <a href="index.html" style="color: black;">Klick-Spiel</a>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+  <script>
+    $('#startPic').click(function(){
+      $('#wave1').fadeTo('slow', 1, function(){
+        $('#wave1').fadeToggle('slow', function(){
+          $('#wave1').fadeToggle('slow');
+        });
+      });
+    });
+    window.onload = function(){
+      var p = $('#loader');
+      for(var i = 0; i < 20; i++){
+        p.animate({opacity: '0.5'}, 'slow');
+        p.animate({opacity: '1'}, 'slow');
+      }
+    }
+  </script>
+
+</body>
+</html>

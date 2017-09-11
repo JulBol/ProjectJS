@@ -1,0 +1,61 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- own Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <title>Embed</title>
+</head>
+
+<body style="width: 100vw; height: 100vh;">
+
+  <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
+    <div class=" col-md-12 row">
+      <div class="col-md-4 offset-md-4 text-center">
+        <a class="navbar-brand" href="embed.html" style="font-family: 'Lobster', cursive;" id="demo">Embed</a>
+      </div>
+      <div class="ml-auto">
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid row">
+    <div class="col-md-12 mt-3 mb-3" >
+      <button id="showPacman" class="btn btn-info col-md-2 offset-md-5">I want to play</button>
+    </div>
+    <div id="pacman" class="col-md-12" style="width:100%;height:100%;width: 500; height: 461.25px; float: none; clear: both; margin: 2px auto;">
+      <embed src="https://www.google.com/logos/2010/pacman10-hp.html?hl=de" wmode="transparent" type="application/x-shockwave-flash" width="100%" height="100%" allowfullscreen="true" title="Adobe Flash Player">
+    </div>
+  </div>
+
+  <footer id="myFooter" class="col-md-12 row noMLR">
+    <div class="col-md-2">
+      <a href="googleThings.html" style="color: black;">Google-Things</a>
+    </div>
+    <div class="col-md-2 offset-md-8 text-right">
+      <a href="index.html" style="color: black;">Klick-Spiel</a>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+  <script>
+  window.onload = function(){
+    $('#pacman').hide();
+    }
+    $('#showPacman').click(function(){
+      $('#pacman').toggle();
+    });
+  </script>
+
+</body>
+</html>

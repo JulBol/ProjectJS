@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- own Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <title>Project:JavaScript</title>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
+      <div class=" col-md-12 row">
+        <div class="col-md-4 offset-md-4 text-center">
+          <a class="navbar-brand" id="demo" style="font-family: 'Lobster', cursive;" >Project: JavaScript</a>
+        </div>
+        <div class="ml-auto">
+        </div>
+      </div>
+    </nav>
+
+    <div class="content row">
+      <div class="col-md-4" style="padding: 20px;">
+        <h1>Willkommen beim Klick-Spiel</h1>
+        <p>
+          Das Ziel des Spiels ist es, so schnell wie möglich den Button Sektor mit Buttons volzupflastern.<br/>
+          Ready, Set, Goo!!
+        </br/>
+        </p>
+      </div>
+      <div id="myContent" class="col-md-4 text-center fullheight" style="padding-top: 10px;">
+        <button onclick="clicki();timer.mode(1);timer.start(1000);" class="myButton">Click Me!</button>
+      </div>
+      <div class="col-md-4" style="padding: 10px;">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+        <div class="timer ml-auto mr-auto">
+            <span class="hour">00</span>:<span class="minute">00</span>:<span class="second">00</span>
+        </div>
+<!--    <div class="control">
+            <button onClick="timer.start(1000)">Start</button>
+            <button onClick="timer.stop()">Stop</button>
+            <button onClick="timer.reset(60)">Reset</button>
+            <button onClick="timer.mode(1)">Count up</button>
+            <button onClick="timer.mode(0)">Count down</button>
+        </div>
+-->     </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/timer.js"></script>
+
+    <script>
+      $('#demo').mouseover(function (){
+        $('#demo').css('font-size', '30px');
+      });
+      $('#demo').mouseout(function (){
+        $('#demo').css('font-size', '20px');
+      });
+      var btns = 0;
+      function clicki(){
+        var button = document.createElement('button');
+        button.setAttribute("onclick", "clicki()");
+        button.innerHTML = 'And Me!';
+        document.getElementById('myContent').append(button);
+        btns++;
+        if(btns >= 110/*208*/){
+          var time = timer.getTime();
+          alert(time + " seconds");
+          timer.stop();
+        }
+      }
+    </script>
+    <footer id="myFooter" class="col-md-12 row noMLR">
+      <div class="col-md-2">
+        <a href="blockControl.html" style="color: black;">BlockControl-Spiel</a>
+      </div>
+      <div class="col-md-2 offset-md-8 text-right">
+        <a href="googleThings.html" style="color: black;">Google-Things</a>
+      </div>
+    </footer>
+  </body>
+</html>

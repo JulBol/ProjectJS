@@ -1,0 +1,100 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- own Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <title>Angular</title>
+</head>
+
+<body style="width: 100vw; height: 100vh;">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+
+  <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
+    <div class=" col-md-12 row">
+      <div class="col-md-4 offset-md-4 text-center">
+        <a class="navbar-brand" href="angular.html" style="font-family: 'Lobster', cursive;" id="demo">Angular</a>
+      </div>
+      <div class="ml-auto">
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid row" ng-app="myApp" ng-controller="myCtrl">
+    <p class="col-md-6 mt-2 ml-2">Whats your name ? <input type="text" ng-model="name" placeholder="name"/></p>
+    <div class="col-md-5 ml-auto">
+      <div class="mt-2 mr-2" ng-model="blinky" ng-style="changeColor" style="float: right; height:100px; width:200px; text-align: center; line-height: 100px;">
+        Hi im blinky
+      </div>
+      <form style="height:164px; width:200px; border: 1px ridge black;">
+        <select ng-model="myList" ng-mouseover="selectHover" ng-style="selectColor" style="text-align: center; display: block; margin: 0 auto;">
+          <option value="">
+          <option value="red">red
+          <option value="yellow">yellow
+          <option value="green">green
+          <option value="cyan">cyan
+          <option value="blau">blau
+          <option value="violet">violet
+        </select>
+      </form>
+    </div>
+    <p class="col-md-12 ml-2">{{anrede + name}}</p>
+  </div>
+
+  <footer id="myFooter" class="col-md-12 row noMLR">
+    <div class="col-md-2">
+      <a href="googleThings.html" style="color: black;">Google-Things</a>
+    </div>
+    <div class="col-md-2 offset-md-8 text-right">
+      <a href="index.html" style="color: black;">Klick-Spiel</a>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+  <script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function($scope, $interval){
+      $scope.anrede = "Hello ";
+      $scope.changeColor = "yellow";
+      /*$scope.selectColor = {
+        "background-color" : "yellow"
+      };*/
+      $interval(function(){
+        $scope.changeColor = {
+          "background-color" : getRandomColor()
+        };
+      }, 1000);
+      $scope.selectHover = function(e){
+        console.log("1");
+        var target = $(e.target);
+        if(target.is("option")){
+          $scope.selectColor = {
+            "background-color" : target.text()
+          };
+        }else{
+          console.log("not and option");
+        }
+      };
+    });
+    function getRandomColor(){
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+
+</body>
+</html>

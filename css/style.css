@@ -1,0 +1,74 @@
+div.timer {
+    border:1px #666666 solid;
+    width:190px;
+    height:50px;
+    line-height:50px;
+    font-size:36px;
+    font-family:"Courier New", Courier, monospace;
+    text-align:center;
+    margin:5px;
+}
+#myFooter{
+  background-color: #EEE;
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  color: black;
+}
+body{
+  font-family: "Roboto Condensed", Arial;
+  overflow:hidden;
+  width: 100%;
+}
+#myContent{
+  margin: 0;
+}
+.fullheight{
+  height: 90vh;
+  border-style: groove;
+}
+#myTitle{
+  padding: 25px 0px 50px 0px;
+  font-family: 'Lobster', cursive;
+}
+#myTitleBlockControl{
+  padding: 15px 0px 15px 0px;
+  font-family: 'Lobster', cursive;
+  text-align: center;
+}
+.noMLR{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.tableContent{
+  width: 7vh;
+  height: 7vh;
+  text-align: center;
+  background-color: #EEE;
+}
+.blueCell{
+  background-color: cyan;
+}
+.errorCellLeft{
+  border-left: red 2px solid;
+}
+.errorCellRight{
+  border-right: red 2px solid;
+}
+.errorCellTop{
+  border-top: red 2px solid;
+}
+.errorCellBottom{
+  border-bottom: red 2px solid;
+}
+.fade {
+   opacity: 1;
+   transition: opacity 0.75s ease-in-out;
+   -moz-transition: opacity 0.75s ease-in-out;
+   -webkit-transition: opacity 0.75s ease-in-out;
+   /* img-fading: https://bavotasan.com/2011/a-simple-fade-with-css3/ */
+}
+.fade:hover {
+   opacity: 0.5;
+}

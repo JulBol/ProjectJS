@@ -1,0 +1,181 @@
+<html>
+  <!-- google api key for autocomplete:  AIzaSyBpGL8u_4J24jghWjU80NeOmuKKcXi-gMQ  -->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- own Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <title>Project:JavaScript</title>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
+      <div class=" col-md-12 row">
+        <div class="col-md-4 offset-md-4 text-center">
+          <a class="navbar-brand" href="googleThings.html" style="font-family: 'Lobster', cursive;" id="demo">Project: JavaScript</a>
+        </div>
+        <div class="ml-auto">
+        </div>
+      </div>
+    </nav>
+
+    <div id="myContent" class="row">
+        <div class="col-md-6">
+          <div class="well" id="left-well">
+            <div id="left-content">
+              <h2 id="myTitle" class="text-center"><u>Search-Well</u></h2>
+              <div class="col-md-8 offset-md-2">
+                <div class="form-group row">
+                  <input id="autocomplete" class="form-control mb-5" type="text" placeholder="Enter your address" onfocus="geolocate()" />
+                  <input id="route" class="form-control mb-3 col-md-8" type="text" placeholder="Street" />
+                  <input id="street_number" class="form-control mb-3 col-md-3 ml-auto" type="text" placeholder="Number" />
+                  <input id="locality" class="form-control mb-3 col-md-8" type="text" placeholder="City" />
+                  <input id="postal_code" class="form-control mb-3 col-md-3 ml-auto" type="text" placeholder="Postcode" />
+                  <input id="country" class="form-control mb-3 col-md-8" type="text" placeholder="Country"  />
+                  <input id="administrative_area_level_1" class="form-control mb-3 col-md-3 ml-auto" type="text" placeholder="State" />
+                  <button onclick="myFunc();" class="btn btn-success col-md-3 ml-auto pl-0 pr-0">Search on map</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="well" id="right-well">
+            <div id="right-content">
+              <h2 id="myTitle" class="text-center"><u>Maps-Well</u></h2>
+              <div class="col-md-10 offset-md-1 text-center">
+                <!-- google api key: AIzaSyAPQ3oG6rXIwXQq18-ASc0KEszz667GhNw  -->
+                <iframe id="myFrame" width="600" height="450" frameborder="0" style="border:0;"
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPQ3oG6rXIwXQq18-ASc0KEszz667GhNw&q=Ticketino%20AG"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <footer id="myFooter" class="col-md-12 row noMLR">
+      <div class="col-md-2">
+        <a href="index.html" style="color: black;">Klick-Spiel</a>
+      </div>
+      <div class="col-md-2 offset-md-8 text-right">
+        <a href="blockControl.html" style="color: black;">BlockControl-Spiel</a>
+      </div>
+    </footer>
+
+    <script>
+      function myFunc(){
+        var myLocArr = document.getElementById('autocomplete').value.split(" ");
+        var myLoc = myLocArr.join("+");
+        if(myLoc != ""){
+          document.getElementById('myFrame').src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPQ3oG6rXIwXQq18-ASc0KEszz667GhNw&q=" + myLoc;
+          console.log(document.getElementById('myFrame').src);
+        }
+      }
+    </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).keydown(function(e){
+        if (e.keyCode==90 && e.ctrlKey){
+          var leftWell = document.getElementById('left-content');
+          if(document.getElementById('left-well').contains(leftWell)){
+            var divLeft = document.getElementById('left-content');
+            document.getElementById('right-well').append(divLeft);
+            var divRight = document.getElementById('right-content');
+            document.getElementById('left-well').append(divRight);
+          }else{
+            var divLeft = document.getElementById('left-content');
+            document.getElementById('left-well').append(divLeft);
+            var divRight = document.getElementById('right-content');
+            document.getElementById('right-well').append(divRight);
+          }
+        }
+      });
+    </script>
+
+    <script>
+      // This example displays an address form, using the autocomplete feature
+      // of the Google Places API to help users fill in the information.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var placeSearch, autocomplete;
+      var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+
+        for (var component in componentForm) {
+          document.getElementById(component).value = '';
+          document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            document.getElementById(addressType).value = val;
+          }
+        }
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpGL8u_4J24jghWjU80NeOmuKKcXi-gMQ&libraries=places&callback=initAutocomplete"
+        async defer></script>
+  </body>
+</html>

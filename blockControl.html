@@ -1,0 +1,174 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- own Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <title>Block-Control</title></title>
+</head>
+<body>
+  <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
+    <div class=" col-md-12 row">
+      <div class="col-md-4 offset-md-4 text-center">
+        <a class="navbar-brand" href="blockControl.html" style="font-family: 'Lobster', cursive;" id="demo">Block-Control</a>
+      </div>
+      <div class="ml-auto">
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid row" style="width: 100%; overflow:hidden;">
+    <div id="left-well" class="col-md-4">
+      <div class="form-group">
+        <h2 id="myTitleBlockControl">Block-Control-Game</h2>
+        <form onsubmit="return genTable()">
+          <input id="rows" class="form-control col-md-8 offset-md-2 mt-3 text-center" type="number" min="2" max="10" placeholder="rows" required />
+          <input id="columns" class="form-control col-md-8 offset-md-2 mt-1 text-center" type="number" min="2" max="10" placeholder="columns" required />
+          <button type="submit" class="btn btn-success col-md-4 offset-md-4 mt-2 text-center">Go</button>
+        </form>
+    </div>
+    </div>
+    <div id="right-well" class="col-md-8" style="border-left: 2px solid black; height: 90vh; padding-top: 20px;">
+      <p style="width: 100%; text-align: center;">this is the side of the game</p>
+      <div id="game" class="col-md-12">
+        <!-- table -->
+      </div>
+    </div>
+  </div>
+  <footer id="myFooter" class="col-md-12 row noMLR">
+    <div class="col-md-2">
+      <a href="googleThings.html" style="color: black;">Google-Things</a>
+    </div>
+    <div class="col-md-2 offset-md-8 text-right">
+      <a href="index.html" style="color: black;">Klick-Spiel</a>
+    </div>
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+  <script>
+  var blackField = 11;
+  var tableArr = [];
+  var myOldVar;
+  function genTable() {
+    var columns = parseInt(document.getElementById('columns').value);
+    var rows = parseInt(document.getElementById('rows').value);
+    // column = vertical, row = horizontal
+    var myTable = '<table border="1" class="mr-auto ml-auto">\n<tbody>\n ';
+    for(var i = 0; i < rows; i++){
+      myTable += '<tr>\n';
+      tableArr[i] = [];
+      for(var j = 0; j < columns; j++){
+        myTable += '<td id="' + i + j + '" class="tableContent">' + i + j + '</td>\n';
+        tableArr[i][j] = i.toString() + "" + j.toString();
+      }
+
+      myTable += '</tr>\n';
+    }
+    myTable += '</tbody>\n</table>';
+    //console.log(tableArr[0][0]);
+    document.getElementById('game').innerHTML = myTable;
+    var myVar = document.getElementById(11);
+    $(myVar).addClass('blueCell');
+    myOldVar = document.getElementById(11);
+    return false; //For no page-reload
+    }
+
+    document.onkeydown = function(e) {
+      removeRedBorders();
+      var x = [];
+      var a, b;
+      x = blackField.toString().split("");
+      if(getLength(x) == 1){
+        a = 0;
+        b = x[0];
+      }else{
+        a = x[0];
+        b = x[1];
+      }
+      switch (e.keyCode) {
+        case 37:
+            //alert('left');
+            if(tableArr[a][b-1] != undefined){
+              blackField -= 1;
+            }else{
+              var erVar = document.getElementsByClassName('blueCell');
+              $(erVar).addClass('errorCellLeft');
+      // Red Border automatic faded after a few sec
+              myOldVar = undefined;
+            }
+            break;
+        case 38:
+            //alert('up');
+            if(a != 0){
+              blackField -= 10;
+            }else{
+              var erVar = document.getElementsByClassName('blueCell');
+              $(erVar).addClass('errorCellTop');
+              myOldVar = undefined;
+            }
+            break;
+        case 39:
+            //alert('right');
+            if(b != tableArr[0].length-1){
+              blackField += 1;
+            }else{
+              var erVar = document.getElementsByClassName('blueCell');
+              $(erVar).addClass('errorCellRight');
+              myOldVar = undefined;
+            }
+            break;
+        case 40:
+            //alert('down');
+            if(a != tableArr.length-1){
+              blackField += 10;
+            }else{
+              var erVar = document.getElementsByClassName('blueCell');
+              $(erVar).addClass('errorCellBottom');
+              myOldVar = undefined;
+            }
+            break;
+      }
+      if(getLength(blackField) == 1){
+        console.log(blackField);
+        var myVar = document.getElementById("0" + blackField);
+        $(myVar).addClass('blueCell');
+        if($(myOldVar).hasClass('blueCell')){
+          $(myOldVar).removeClass('blueCell');
+        }
+        myOldVar = myVar;
+      }else{
+        console.log(blackField);
+        var myVar = document.getElementById(blackField);
+        $(myVar).addClass('blueCell');
+        if($(myOldVar).hasClass('blueCell')){
+          $(myOldVar).removeClass('blueCell');
+        }
+        myOldVar = myVar;
+      }
+
+    };
+    function getLength(number) {
+      return number.toString().length;
+    }
+    function removeRedBorders(){
+      var leftB = document.getElementsByClassName('errorCellLeft');
+      $(leftB).removeClass('errorCellLeft');
+      var rightB = document.getElementsByClassName('errorCellRight');
+      $(rightB).removeClass('errorCellRight');
+      var topB = document.getElementsByClassName('errorCellTop');
+      $(topB).removeClass('errorCellTop');
+      var bottomB = document.getElementsByClassName('errorCellBottom');
+      $(bottomB).removeClass('errorCellBottom');
+    }
+  </script>
+
+</body>
+</html>

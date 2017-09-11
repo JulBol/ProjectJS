@@ -1,0 +1,82 @@
+<html>
+<head>
+  <editor-fold
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- own Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <title>AJAX</title>
+  </editor-fold>
+</head>
+<body style="padding: 10px;">
+<div class="col-md-6 pl-0" style="border: 1px solid black;">
+  <p class="col-md-4" style="text-align: center; border: 1px dashed black;" >Ajax with PHP</p>
+  <form class="form-group col-md-12">
+    <input type="text" class="form-control" placeholder="suche.." onkeyup="showUser(this.value)" />
+  </form>
+</div>
+<button id="testButton" onclick="genArr()" class="btn btn-success mt-2 mb-2">test button</button>
+<div id="table" class="col-md-8 offset-md-2">
+  <!-- table getting generated with js -->
+</div>
+
+<br /><hr /><br />
+
+
+<script>
+  /*
+  function genTable(contents){
+    var myTable = '<table border="1" class="mr-auto ml-auto">\n<tbody>\n ';
+    for(var i = 0; i < contents.length+1; i++){
+      myTable += '<tr>\n';
+      if(i == 0){
+        myTable += '<th class="col-md-1"> ID </th><th class="col-md-1"> Prename </th><th class="col-md-1"> Name </th>'
+      }else{
+        for(var j = 0; j < contents.length; j++){
+            myTable += '<td class="tableContent">' + contents[j][i-1] + '</td>\n';
+        }
+      }
+      myTable += '</tr>\n';
+    }
+    myTable += '</tbody>\n</table>';
+    document.getElementById('table').innerHTML = myTable;
+  }
+  function genArr(){
+    var myArr = new Array ( );
+    myArr = ["id", "prename", "name"];
+    myArr[0] = [1, 2, 3];
+    myArr[1] = ["Julian", "Tim", "Dario"];
+    myArr[2] = ["Bolliger", "Elsener", "Garrapa"];
+    genTable(myArr);
+
+  }
+  */
+</script>
+<script>
+function showUser(str) {
+   if (str == "") {
+       document.getElementById("table").innerHTML = "";
+       return;
+   } else {
+       xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (this.readyState == 4 && this.status == 200) {
+               document.getElementById("table").innerHTML = this.responseText;
+           }
+       };
+       xmlhttp.open("GET","ajaxPHP-file.php?q="+str,true);
+       xmlhttp.send();
+   }
+}
+</script>
+</body>
+</html>

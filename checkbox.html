@@ -1,0 +1,121 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- own Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <title>Block-Control</title>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
+    <div class=" col-md-12 row">
+      <div class="col-md-4 offset-md-4 text-center">
+        <a class="navbar-brand" href="fade.html" style="font-family: 'Lobster', cursive;" id="demo">Faded</a>
+      </div>
+      <div class="ml-auto">
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid row" style="width: 100%; overflow:hidden;">
+    <div id="checkboxes" class="col-md-12" style="margin: 10px;">
+          <input type="checkbox" name="zutat" id="noMember">Kein Mitglied</label><br />
+          <input type="checkbox" name="zutat" id="student">Student</label><br />
+          <input type="checkbox" name="zutat" id="mitglied">Mitglied</label>
+          <div class="ml-5">
+            <input type="checkbox" name="subChb" class="subCheckboxes">subCheckbox 1</label><br />
+            <input type="checkbox" name="subChb" class="subCheckboxes">subCheckbox 2</label><br />
+            <input type="checkbox" name="subChb" class="subCheckboxes">subCheckbox 3</label>
+          </div>
+    </div>
+    <div  class="col-md-12" hidden>
+      <select id="ddList">
+        <option id="ddList1" value="0">One</option>
+        <option value="1">Two</option>
+        <option value="3">THREE</option>
+    </select>
+    </div>
+    <hr />
+    <div id="prices" class="col-md-12 mt-5">
+      <p>
+        label 1: <label id="label1" value=""></label>
+      </p>
+      <p id="topLabel2">
+        <br />
+        label 2: <label id="label2" value=""></label>
+      </p>
+      <p id="topLabel3">
+              <br />
+        label 3: <label id="label3" value=""></label>
+      </p>
+      <br />
+      <p>
+        label 4: <label id="label4" value=""></label>
+      </p>
+    </div>
+  </div>
+
+  <footer id="myFooter" class="col-md-12 row noMLR">
+    <div class="col-md-2">
+      <a href="googleThings.html" style="color: black;">Google-Things</a>
+    </div>
+    <div class="col-md-2 offset-md-8 text-right">
+      <a href="index.html" style="color: black;">Klick-Spiel</a>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+  <script>
+    window.onload = function(){
+      disableSubChb();
+    }
+    $('#checkboxes').click(function(){
+      var myVar = document.getElementById('label1');
+      var a = document.getElementById("ddList");
+      if(document.getElementById('noMember').checked ){
+        myVar.textContent = a.options[0].textContent;
+      }else if (document.getElementById('student').checked ){
+        myVar.textContent = a.options[1].textContent;
+      }else if(document.getElementById('mitglied').checked ){
+        myVar.textContent = a.options[2].textContent;
+      }else{
+        myVar.textContent = "";
+      }
+      disableSubChb();
+      // formatierung bearbeiten..
+
+      if(document.getElementById('student').checked){
+        console.log("1");
+        document.getElementById('topLabel2').style.display = 'none';
+        document.getElementById('topLabel3').style.display = 'none';
+      }else{
+        console.log("2");
+        document.getElementById('topLabel2').style.display = 'block';
+        document.getElementById('topLabel3').style.display = 'block';
+      }
+    })
+    function disableSubChb(){
+      if(document.getElementById('mitglied').checked){
+        $('.subCheckboxes').prop('disabled', false);
+      }else{
+        $('.subCheckboxes')
+        .prop('disabled', true)
+        .prop('checked', false);
+      }
+    }
+  </script>
+
+</body>
+</html>
