@@ -1,0 +1,53 @@
+<html>
+<head>
+  <editor-fold>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- own Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <title>AJAX</title>
+  </editor-fold>
+</head>
+<body>
+  <footer id="myFooter" class="col-md-12 row noMLR" style="opacity: 0.75;">
+    <form class="row col-md-4 offset-md-4 mb-0" style="border: 1px ridge black; padding: 0;" onsubmit="return switchSite()">
+      <select id="sites" class="col-md-6" style="text-align: center; display: block; margin: 0;">
+        <option value="ajaxWithPHP.html">Select Website
+        <option value="index.html">Button-Game
+        <option value="googleThings.html">Google-Things
+        <option value="blockControl.html">Block-Control
+        <option value="fade.html">Faded
+        <option value="embed.html">Embed
+        <option value="checkbox.html">Checkbox
+        <option value="angular.html">Angular
+        <option value="ajaxWithPHP.html">Ajax
+      </select>
+      <button type="submit" class="btn btn-success col-md-6">Confirm</button>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    function switchSite(){
+      console.log("ok");
+      var partOfRoute = $('#sites').find(":selected").val();
+      if(partOfRoute=="reload"){
+        location.reload();
+      }else{
+        window.location.replace("http://localhost:5555/Projectjs/"+partOfRoute);
+        console.log(partOfRoute);
+      }
+      return false;
+    }
+    </script>
+  </footer>
+
+</body>
+</html>

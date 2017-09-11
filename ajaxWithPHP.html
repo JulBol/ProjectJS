@@ -1,6 +1,6 @@
 <html>
 <head>
-  <editor-fold
+  <editor-fold>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,22 +17,33 @@
     <title>AJAX</title>
   </editor-fold>
 </head>
-<body style="padding: 10px;">
-<div class="col-md-6 pl-0" style="border: 1px solid black;">
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
+    <div class=" col-md-12 row">
+      <div class="col-md-4 offset-md-4 text-center">
+        <a class="navbar-brand" href="ajaxWithPHP.html" style="font-family: 'Lobster', cursive;" id="demo">Ajax</a>
+      </div>
+      <div class="ml-auto">
+      </div>
+    </div>
+  </nav>
+  <!-- /Navigation -->
+<div class="col-md-6 pl-0 offset-md-3 mt-2" style="border: 1px solid black;">
   <p class="col-md-4" style="text-align: center; border: 1px dashed black;" >Ajax with PHP</p>
   <form class="form-group col-md-12">
     <input type="text" class="form-control" placeholder="suche.." onkeyup="showUser(this.value)" />
   </form>
 </div>
-<button id="testButton" onclick="genArr()" class="btn btn-success mt-2 mb-2">test button</button>
+<br />
 <div id="table" class="col-md-8 offset-md-2">
-  <!-- table getting generated with js -->
+  <!-- table getting generated with php -->
 </div>
 
 <br /><hr /><br />
 
-
 <script>
+  // JavaScript version of generating the Data-Table
   /*
   function genTable(contents){
     var myTable = '<table border="1" class="mr-auto ml-auto">\n<tbody>\n ';
@@ -73,10 +84,19 @@ function showUser(str) {
                document.getElementById("table").innerHTML = this.responseText;
            }
        };
-       xmlhttp.open("GET","ajaxPHP-file.php?q="+str,true);
+       xmlhttp.open("GET","includedFiles/ajaxPHP-file.php?q="+str,true);
        xmlhttp.send();
    }
 }
 </script>
+<!-- Footer -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('#footer').load("includedFiles/footer.html");
+    })
+  </script>
+  <div id="footer"></div>
+  <!-- /Footer -->
 </body>
 </html>

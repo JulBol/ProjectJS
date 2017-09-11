@@ -14,14 +14,14 @@
     <!-- font-awesome -->
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <title>Project:JavaScript</title>
+    <title>ProjectJS: Google-Things</title>
   </head>
   <body>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
       <div class=" col-md-12 row">
         <div class="col-md-4 offset-md-4 text-center">
-          <a class="navbar-brand" href="googleThings.html" style="font-family: 'Lobster', cursive;" id="demo">Project: JavaScript</a>
+          <a class="navbar-brand" href="googleThings.html" style="font-family: 'Lobster', cursive;" id="demo">Google-Things</a>
         </div>
         <div class="ml-auto">
         </div>
@@ -63,15 +63,6 @@
           </div>
       </div>
     </div>
-
-    <footer id="myFooter" class="col-md-12 row noMLR">
-      <div class="col-md-2">
-        <a href="index.html" style="color: black;">Klick-Spiel</a>
-      </div>
-      <div class="col-md-2 offset-md-8 text-right">
-        <a href="blockControl.html" style="color: black;">BlockControl-Spiel</a>
-      </div>
-    </footer>
 
     <script>
       function myFunc(){
@@ -175,7 +166,15 @@
         }
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpGL8u_4J24jghWjU80NeOmuKKcXi-gMQ&libraries=places&callback=initAutocomplete"
-        async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpGL8u_4J24jghWjU80NeOmuKKcXi-gMQ&libraries=places&callback=initAutocomplete" async defer></script>
+    <!-- Footer -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $('#footer').load("includedFiles/footer.html");
+      })
+    </script>
+    <div id="footer"></div>
+    <!-- /Footer -->
   </body>
 </html>

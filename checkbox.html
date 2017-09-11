@@ -66,15 +66,6 @@
     </div>
   </div>
 
-  <footer id="myFooter" class="col-md-12 row noMLR">
-    <div class="col-md-2">
-      <a href="googleThings.html" style="color: black;">Google-Things</a>
-    </div>
-    <div class="col-md-2 offset-md-8 text-right">
-      <a href="index.html" style="color: black;">Klick-Spiel</a>
-    </div>
-  </footer>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
   <script>
@@ -116,6 +107,14 @@
       }
     }
   </script>
-
+  <!-- Footer -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('#footer').load("includedFiles/footer.html");
+    })
+  </script>
+  <div id="footer"></div>
+  <!-- /Footer -->
 </body>
 </html>

@@ -13,7 +13,8 @@
   <!-- font-awesome -->
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
-  <title>Block-Control</title></title>
+  <link rel="shortcut icon" href="your_image_path_and_name.ico" />
+  <title>Block-Control</title>
 </head>
 <body>
   <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
@@ -36,21 +37,13 @@
         </form>
     </div>
     </div>
-    <div id="right-well" class="col-md-8" style="border-left: 2px solid black; height: 90vh; padding-top: 20px;">
+    <div id="right-well" class="col-md-8" style="border-left: 2px solid black; height: 88vh; padding-top: 20px;">
       <p style="width: 100%; text-align: center;">this is the side of the game</p>
       <div id="game" class="col-md-12">
         <!-- table -->
       </div>
     </div>
   </div>
-  <footer id="myFooter" class="col-md-12 row noMLR">
-    <div class="col-md-2">
-      <a href="googleThings.html" style="color: black;">Google-Things</a>
-    </div>
-    <div class="col-md-2 offset-md-8 text-right">
-      <a href="index.html" style="color: black;">Klick-Spiel</a>
-    </div>
-  </footer>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
   <script>
@@ -169,6 +162,14 @@
       $(bottomB).removeClass('errorCellBottom');
     }
   </script>
-
+  <!-- Footer -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('#footer').load("includedFiles/footer.html");
+    })
+  </script>
+  <div id="footer"></div>
+  <!-- /Footer -->
 </body>
 </html>
