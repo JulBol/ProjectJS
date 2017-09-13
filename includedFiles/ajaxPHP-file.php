@@ -21,13 +21,13 @@ th {text-align: left;}
   // $q = intval($_GET['q']);
   $q = strval($_GET['q']);
 
-  $con = mysqli_connect('localhost','root','','dbtest');
+  $con = mysqli_connect('localhost','root','','dbProjectJS');
   if (!$con) {
       die('Could not connect: ' . mysqli_error($con));
   }
 
-  mysqli_select_db($con,"user");
-  $sql="SELECT * FROM user WHERE name LIKE '%".$q."%' OR prename LIKE '%".$q."%'";
+  mysqli_select_db($con,"tbl_Ajax");
+  $sql="SELECT * FROM tbl_Ajax WHERE name LIKE '%".$q."%' OR prename LIKE '%".$q."%'";
   $result = mysqli_query($con,$sql);
 
   echo "<table>
