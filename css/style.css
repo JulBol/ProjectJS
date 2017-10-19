@@ -17,6 +17,8 @@ div.timer {
 }
 body{
   font-family: "Roboto Condensed", Arial;
+}
+.noScrolling{
   overflow:hidden;
   width: 100%;
 }
@@ -62,7 +64,7 @@ body{
 .errorCellBottom{
   border-bottom: red 2px solid;
 }
-.fade {
+.faded {
    opacity: 1;
    transition: opacity 0.75s ease-in-out;
    -moz-transition: opacity 0.75s ease-in-out;
@@ -71,4 +73,55 @@ body{
 }
 .fade:hover {
    opacity: 0.5;
+}
+.counterContent{
+  background-color: rgb(236, 238, 239);
+  height: 256px;
+  border: 3px solid black;
+  border-radius: 25px;
+  top: 30%;
+  bot: 70%;
+  position: fixed;
+  padding: 0;
+}
+.myNum{
+  font-size: 25px;
+  margin: 0;
+}
+.activeClass{
+  background-color: rgb(236, 238, 239);
+}
+@keyframes highlight {
+ 	0% {
+ 		background: rgb(226, 228, 229);
+    border-radius: 25px;
+ 	}
+ 	100% {
+ 		background: rgb(236, 238, 239);
+    border-radius: 25px;
+ 	}
+}
+.highlight{
+	animation: highlight 1s infinite;
+}
+.modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-footer {
+    background-color: #f9f9f9;
+}
+.fullOpacity{
+  opacity: 1 !important;
+}
+
+.vertical-hr{
+  border-right: 1px inset grey;
+  height: 100vh;
+}
+
+.wellSettings{
+ margin-left: -0.5px;
 }

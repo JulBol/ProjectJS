@@ -1,6 +1,14 @@
+<?php
+if(isset($_GET["page"])) {
+  $activePage = $_GET['page'];
+}
+else {
+  header('Location: simplePagination.php?page=1');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +25,12 @@
 
     <link rel="icon" href="img/iconJS.ico" />
     <title>Simple Pagination</title>
+    <style>
+      td, th{
+        text-align: center !important;
+        vertical-align: middle !important;
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation -->
@@ -34,7 +48,7 @@
       <div class="content row">
         <?php
           $conn = mysqli_connect('localhost', 'root', '', 'dbprojectjs') or die ('Error connecting to mysql');
-          $limit = 2;
+          $limit = 1;
           if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
           $start_from = ($page-1) * $limit;
 
@@ -44,8 +58,8 @@
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>title</th>
-                <th>body</th>
+                <th class="col-md-6">title</th>
+                <th class="col-md-6">body</th>
               </tr>
             <thead>
           <tbody>
@@ -66,15 +80,35 @@
           $total_records = $row[0];
           $total_pages = ceil($total_records / $limit);
 
-          $pageLink = "<nav aria-label='Page navigation example'>";
+          $previous = $activePage != 1? $activePage-1 : $activePage;
+          $next = $activePage != $total_pages? $activePage+1 : $activePage;
+
+          $pageLink = "<nav aria-label='Page navigation example' class='ml-auto mr-auto'>";
             $pageLink .= "<ul class='pagination'>";
                 for ($i=1; $i<=$total_pages; $i++) {
                   if($i == 1){
-                    $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$i}'>Previous</a></li>";
+                    if($i == $activePage){
+                      $pageLink .= "<li class='page-item disabled'><a class='page-link' href='simplePagination.php?page={$previous}'>Previous</a></li>";
+                      $pageLink .= "<li class='page-item'><a class='page-link activeClass' href='simplePagination.php?page={$i}'>{$i}</a></li>"; //set this one active with colors
+                      $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$next}'>{$next}</a></li>";
+                    }else{
+                      $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$previous}'>Previous</a></li>";
+                    }
                   }else if($i == $total_pages){
-                    $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$i}'>Next</a></li>";
-                  }else{
-                    $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$i}'>{$i}</a></li>";
+                    // $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$next}'>{$i}</a></li>";
+
+                    if($i == $activePage){
+                      $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$previous}'>{$previous}</a></li>";
+                      $pageLink .= "<li class='page-item'><a class='page-link activeClass' href='simplePagination.php?page={$i}'>{$i}</a></li>"; //set this one active with colors
+                      $pageLink .= "<li class='page-item disabled'><a class='page-link' href='simplePagination.php?page={$next}'>Next</a></li>";
+
+                    }else{
+                      $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$next}'>Next</a></li>";
+                    }
+                  }else if($i == $activePage){
+                    $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$previous}'>{$previous}</a></li>";
+                    $pageLink .= "<li class='page-item'><a class='page-link activeClass' href='simplePagination.php?page={$i}'>{$i}</a></li>"; //set this one active with colors
+                    $pageLink .= "<li class='page-item'><a class='page-link' href='simplePagination.php?page={$next}'>{$next}</a></li>";
                   }
                 }
             $pageLink .= "</ul>";

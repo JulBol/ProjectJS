@@ -29,30 +29,42 @@
     </div>
   </nav>
 <!-- /Navigation -->
-  <div class="container-fluid row mt-2" ng-app="myApp" ng-controller="myCtrl">
-    <div id="left-content" class="col-md-5">
-      <p class="col-md-6 ml-2">Whats your name ? <input type="text" ng-model="name" placeholder="name"/></p>
-      <br />
-          <p class="col-md-12 ml-2">{{anrede + name}}</p>
-    </div>
-    <div id="middle-content" class="col-md-3">
-      <form style="height:164px; width:200px; border: 1px ridge black;">
-        <select ng-model="myList" ng-mouseover="selectHover" ng-style="selectColor" style="text-align: center; display: block; margin: 0 auto;">
-          <option value="">
-          <option value="red">red
-          <option value="yellow">yellow
-          <option value="green">green
-          <option value="cyan">cyan
-          <option value="blau">blau
-          <option value="violet">violet
-        </select>
-      </form>
-    </div>
-    <div id="right-content" class="col-md-4">
-      <div ng-model="blinky" ng-style="changeColor" style="float: right; height:100px; width:200px; text-align: center; line-height: 100px;">
-        Hi im blinky
+  <div class="container-fluid row mt-2" ng-app="myApp" ng-controller="myCtrl" style=" margin: 0; padding: 0;">
+
+    <div id="left-content" class="row col-md-8" style="margin: 0;">
+      <div class="col-md-12">
+        <p class="col-md-6 ml-2">Whats your name ? <input type="text" ng-model="name" placeholder="name"/></p>
+        <br />
+        <p class="col-md-12 ml-2">{{anrede + name}}</p>
+      </div>
+      <div>
+
       </div>
     </div>
+    <div class="row col-md-4" style="margin: 0; padding: 0;">
+      <div class="col-md-6 align-center">
+        <form style="height:164px; width:200px; border: 1px ridge black;">
+          <select ng-model="myList" ng-mouseover="selectHover" ng-style="selectColor" style="text-align: center; display: block; margin: 0 auto;">
+            <option value="">
+            <option value="red">red
+            <option value="yellow">yellow
+            <option value="green">green
+            <option value="cyan">cyan
+            <option value="blau">blau
+            <option value="violet">violet
+          </select>
+        </form>
+      </div>
+      <div class="col-md-6 align-center">
+        <div ng-model="blinky" ng-style="changeColor" style="float: right; height:100px; width:200px; text-align: center; line-height: 100px;">
+          Hi im blinky
+        </div>
+      </div>
+    </div>
+
+
+
+
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

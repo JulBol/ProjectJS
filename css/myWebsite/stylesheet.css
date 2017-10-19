@@ -1,0 +1,25 @@
+#Home, hr, a{
+  color: rgb(255, 255, 255) !important;
+  font-family: 'Roboto Slab', serif;
+  border-color: rgb(150, 150, 150) !important;
+}
+html{
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.container-fluid{
+  background-image: url("../../img/Foggy-Forest.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+  /* (Runde-Ecken)
+  border-radius        : 15px;
+  -moz-border-radius   : 15px;
+  -webkit-border-radius: 15px;
+  -khtml-border-radius : 15px;
+  */
+}

@@ -1,0 +1,199 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- own Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="img/iconJS.ico" />
+  <title>Counter</title>
+</head>
+
+<body style="width: 100vw; height: 100vh;">
+<!-- Navigation -->
+  <nav class="navbar navbar-inverse bg-inverse text-white form-inline">
+    <div class=" col-md-12 row">
+      <div class="col-md-4 offset-md-4 text-center">
+        <a class="navbar-brand" href="counter.html" style="font-family: 'Lobster', cursive;" id="demo">Counter</a>
+      </div>
+      <div class="ml-auto">
+      </div>
+    </div>
+  </nav>
+<!-- /Navigation -->
+
+
+  <div class="container-fluid row mt-2" ng-app="myApp" ng-controller="myCtrl" style=" margin: 0; padding: 0;">
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary col-md-2 offset-md-5 " data-toggle="modal" data-target="#myModal" style="margin-top: 150px;">
+      set timer
+    </button>
+
+
+    <div class="col-md-6 offset-md-3 row counterContent">
+      <div id="hours" class="col-md-4 text-center" style="line-height: 250px; border-radius: 25px;">
+        <p class="myNum">{{hours}}</p>
+      </div>
+      <div id="minutes" class="col-md-4 text-center" style="line-height: 250px;">
+        <p class="myNum" >{{minutes}}</p>
+      </div>
+      <div id="seconds" class="col-md-4 text-center" style="line-height: 250px;">
+        <p class="myNum" >{{seconds}}</p>
+      </div>
+    </div>
+
+    <!-- -->
+      <!-- -->
+        <!-- Modal -->
+        <!-- Modal -->
+    <div class="modal fade fullOpacity" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Set the Timer</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <!-- Set-Hours -->
+          <div class="modal-body" style="padding-bottom: 0;">
+            <div class="form-group col-md-12 row">
+              <label class="col-md-4">Hours</label>
+              <input class="form-control col-md-8" ng-model="newHours"/>
+            </div>
+          </div>
+            <!-- Set-Minutes -->
+            <div class="modal-body" style="padding-bottom: 0; padding-top: 0;">
+              <div class="form-group col-md-12 row">
+                <label class="col-md-4">minutes</label>
+                <input class="form-control col-md-8" ng-model="newMinutes"/>
+              </div>
+            </div>
+            <!-- Set-Seconds -->
+            <div class="modal-body" style="padding-top: 0;">
+              <div class="form-group col-md-12 row">
+                <label class="col-md-4">Seconds</label>
+                <input class="form-control col-md-8" ng-model="newSeconds"/>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="closeModal" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="newTimes">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <!-- Modal -->
+      <!-- -->
+    <!-- -->
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+  <script>
+    var app = angular.module("myApp", []).controller("myCtrl", function($scope, $interval){
+      $scope.hours = "01";
+      $scope.minutes = "00";
+      $scope.seconds = "03";
+      var myPlaceholder = 0;
+      var myInterval = $interval(function(){
+        $("#seconds").removeClass("highlight");
+        $("#minutes").removeClass("highlight");
+        $("#hours").removeClass("highlight");
+        if($scope.seconds != 0){
+          var mySeconds = parseInt($scope.seconds) - 1;
+          $scope.seconds = mySeconds.toString();
+          $scope.seconds = ("0" + $scope.seconds).slice(-2);
+          changed("seconds");
+        }else{
+          if($scope.minutes != 0){
+            var myMinutes = parseInt($scope.minutes) - 1;
+            $scope.minutes = myMinutes.toString();
+            $scope.minutes = ("0" + $scope.minutes).slice(-2);
+            myPlaceholder = 59;
+            $scope.seconds = myPlaceholder.toString();
+            changed("minutes");
+            changed("seconds");
+          }else{
+            if($scope.hours != 0){
+              var myHours = parseInt($scope.hours) - 1;
+              $scope.hours = myHours.toString();
+              $scope.hours = ("0" + $scope.hours).slice(-2);
+              myPlaceholder = 59;
+              $scope.minutes = myPlaceholder.toString();
+              $scope.seconds = myPlaceholder.toString();
+              changed("hours");
+              changed("minutes");
+              changed("seconds");
+            }else{
+              $interval.cancel(myInterval);
+              message();
+            }
+          }
+        }
+      }, 1000);
+      function changed(item){
+        $("#"+item).addClass("highlight");
+      }
+      function changeBack(item){
+        $("#"+item).toggle("highlight");
+      }
+      $scope.newHours = "00";
+      $scope.newMinutes = "00";
+      $scope.newSeconds = "00";
+      document.getElementById('newTimes').onclick = function(){
+        $scope.hours = $scope.newHours;
+        $scope.minutes = $scope.newMinutes;
+        $scope.seconds = $scope.newSeconds;
+        $('#closeModal').click();
+      }
+    });
+    function message(){
+      var options = {
+        icon: "https://www.mfaoil.com/portals/0/logos/bt_gif.gif",
+        body: "Hey man, it's time for a break!",
+      };
+      var notification
+      if (Notification.permission === "granted") {
+        notification = new Notification("Breaktime !", options);
+      }else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+          if (permission === "granted") {
+            var notification = new Notification("Breaktime !", opitons);
+          }
+        });
+      }
+      notification.onclick = function () {
+        var mywindow = window.open("http://www.google.ch", "_blank");
+        window.blur();//loses focus
+        mywindow.focus();// takes focus
+        //focus didnt work
+      };
+    }
+  </script>
+
+  <!-- Footer -->
+  <script>
+    $(function(){
+      $('#footer').load("includedFiles/footer.html");
+    })
+  </script>
+  <div id="footer"></div>
+  <!-- /Footer -->
+</body>
+</html>
