@@ -1,8 +1,3 @@
-#Home, hr, a{
-  color: rgb(255, 255, 255) !important;
-  font-family: 'Roboto Slab', serif;
-  border-color: rgb(150, 150, 150) !important;
-}
 html{
   overflow: scroll;
   overflow-x: hidden;
@@ -11,15 +6,95 @@ html{
   width: 0px;
   background: transparent;
 }
-.container-fluid{
-  background-image: url("../../img/Foggy-Forest.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 100%;
-  /* (Runde-Ecken)
+#arrowDown{
+  cursor: pointer;
+}
+#container2{
+  /* Radial Gradient */
+  background: rgb(192, 192, 192); /* For browsers that do not support gradients */
+  background: -webkit-radial-gradient(rgb(0, 0, 0), rgb(192, 192, 192), rgb(255, 255, 255)); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(rgb(0, 0, 0), rgb(192, 192, 192), rgb(255, 255, 255)); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(rgb(0, 0, 0), rgb(192, 192, 192), rgb(255, 255, 255)); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(rgb(0, 0, 0), rgb(192, 192, 192), rgb(255, 255, 255)); /* Standard syntax */
+}
+
+/* Large+ */
+@media (min-width: 992px){
+  #container1{
+    background-image: url("../../img/Foggy-Forest.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  #Home, hr, a{
+    color: rgb(255, 255, 255) !important;
+    font-family: 'Roboto Slab', serif;
+    border-color: rgb(150, 150, 150) !important;
+  }
+  #HomeFirstDiv{
+    height: 50%; width: 100%;
+  }
+  #HomeSecondDiv{
+    height: 50%; width: 100%;
+  }
+  #ArrowDown{
+    padding-bottom: 20px;
+  }
+}
+
+/* Medium */
+@media (max-width: 991px){
+  #container1{
+    background-image: url("../../img/Foggy-Forest.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  #Home, hr, a{
+    color: rgb(255, 255, 255) !important;
+    font-family: 'Roboto Slab', serif;
+    border-color: rgb(150, 150, 150) !important;
+  }
+  #HomeFirstDiv{
+    height: 65%; width: 100%;
+  }
+  #HomeSecondDiv{
+    height: 35%; width: 100%;
+  }
+  #ArrowDown{
+    padding-bottom: 5px;
+  }
+}
+/* Small- */
+@media (max-width: 575px){
+  #container1{
+    background-image: url("../../img/foggyForestWallpaper.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  #Home, hr, a{
+    color: rgb(0, 0, 0) !important;
+    font-family: 'Roboto Slab', serif;
+    border-color: rgb(150, 150, 150) !important;
+  }
+  #HomeFirstDiv{
+    height: 50%; width: 100%;
+  }
+  #HomeSecondDiv{
+    height: 50%; width: 100%;
+  }
+  #ArrowDown{
+    padding-bottom: 5px;
+  }
+}
+
+/*  COULD BE USEFUL SOMEWHEN
+
+(Runde-Ecken)
   border-radius        : 15px;
   -moz-border-radius   : 15px;
   -webkit-border-radius: 15px;
   -khtml-border-radius : 15px;
-  */
-}
+
+(Background-Size)
+  background-size: contain; width: 100%; height: 0; padding-top: 56.25%; (img-height / img-width * container-width) --> ( 2160 / 3840 * 100)
+
+*/
